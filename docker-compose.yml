@@ -1,0 +1,8 @@
+version: '2'
+services:
+  arch:
+    #image: rafaelsoares/archlinux
+    build: .
+    volumes:
+    - .:/build 
+    privileged: true

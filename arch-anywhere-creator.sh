@@ -163,6 +163,7 @@ prepare_sys() {
 	sudo unsquashfs airootfs.sfs
 
 ### Install fonts, fbterm, fetchmirrors, arch-wiki, and uvesafb drivers onto system and cleanup
+	sudo pacman --root squashfs-root --cachedir squashfs-root/var/cache/pacman/pkg  --config squashfs-root/etc/pacman.conf --noconfirm -Syyy broadcom-wl-dkms
 	sudo pacman --root squashfs-root --cachedir squashfs-root/var/cache/pacman/pkg  --config squashfs-root/etc/pacman.conf --noconfirm -Syyy terminus-font
 	sudo pacman --root squashfs-root --cachedir squashfs-root/var/cache/pacman/pkg  --config squashfs-root/etc/pacman.conf --noconfirm -U /tmp/fetchmirrors/*.pkg.tar.xz
 	sudo pacman --root squashfs-root --cachedir squashfs-root/var/cache/pacman/pkg  --config squashfs-root/etc/pacman.conf --noconfirm -U /tmp/arch-wiki-cli/*.pkg.tar.xz
@@ -242,7 +243,8 @@ configure_boot() {
 create_iso() {
 
 	cd "$aa"
-	xorriso -as mkisofs \
+	echo `pwd`
+	sudo xorriso -as mkisofs \
 	 -iso-level 3 \
 	-full-iso9660-filenames \
 	-volid "$iso_label" \
