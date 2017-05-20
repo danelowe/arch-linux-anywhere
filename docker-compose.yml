@@ -5,3 +5,4 @@ services:
     volumes:
     - .:/build 
     privileged: true
+    command: ["tail", "-f", "/dev/null"]

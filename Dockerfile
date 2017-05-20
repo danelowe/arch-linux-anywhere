@@ -5,6 +5,7 @@ RUN pacman -Syy --noconfirm --asdeps vim && \
 RUN useradd -m -G wheel -s /bin/bash build && \
     echo "build ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/build && \
     chmod 0440 /etc/sudoers.d/build && \
+    echo "Server = http://mirror.ece.auckland.ac.nz/archlinux/$repo/os/$arch" > /etc/pacman.d/mirrorlist && \
     mkdir /build
 ADD . /build
 USER build
